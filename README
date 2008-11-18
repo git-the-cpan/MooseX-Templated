@@ -1,0 +1,62 @@
+MooseX-Templated version 0.01
+
+SYNOPSIS
+
+Farm/Cow.pm
+
+    package Farm::Cow;
+    use Moose;
+    with 'MooseX::Templated::Role';
+
+    has 'spots'   => ( is => 'rw' );
+    has 'hobbies' => ( is => 'rw', default => sub { ['mooing', 'chewing'] } );
+
+    sub moo { "Moooooooo!" }
+
+Farm/Cow.t
+
+    This cow has [% self.spots %] spots. It mostly spends its time 
+    [% self.hobbies.join(" and ") %]. However, when it is very happy 
+    it exclaims, "[% self.moo %]!".
+
+Elsewhere on the Farm...
+
+    my $cow = Farm::Cow->new( spots => '8' );
+    
+    $cow->render();
+    
+    # This cow has 8 spots. It mostly spends its time
+    # mooing and chewing. However, when it is very happy
+    # it exclaims, "Moooooooo!".
+
+
+INSTALLATION
+
+To install this module, run the following commands:
+
+    perl Makefile.PL
+    make
+    make test
+    make install
+
+
+Alternatively, to install with Module::Build, you can use the following commands:
+
+    perl Build.PL
+    ./Build
+    ./Build test
+    ./Build install
+
+
+
+DEPENDENCIES
+
+Moose, Template
+
+
+COPYRIGHT AND LICENCE
+
+Copyright (C) 2008, Ian Sillitoe
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.

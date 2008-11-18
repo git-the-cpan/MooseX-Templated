@@ -1,0 +1,5 @@
+<altcow sound="[% self.moo | html %]" spots="[% self.spots %]">
+[%- FOREACH hobby = self.hobbies %]
+  <hobby name="[% hobby | html %]"/>
+[%- END %]
+</altcow>
