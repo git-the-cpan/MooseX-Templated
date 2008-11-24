@@ -5,8 +5,8 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME                => 'MooseX::Templated',
     AUTHOR              => 'Ian Sillitoe <isillitoe@cpan.org>',
-    VERSION_FROM        => 'lib/MooseX/Templated/Role.pm',
-    ABSTRACT_FROM       => 'lib/MooseX/Templated/Role.pm',
+    VERSION_FROM        => 'lib/MooseX/Templated.pm',
+    ABSTRACT_FROM       => 'lib/MooseX/Templated.pm',
     PL_FILES            => {},
     PREREQ_PM => {
         'Test::More' 	=> '0.86',
