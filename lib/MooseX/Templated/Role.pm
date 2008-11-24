@@ -64,6 +64,9 @@ Then, back out on the farm
 use Moose::Role;
 use MooseX::Templated::View::TT;
 
+use MooseX::Templated;
+our $VERSION = $MooseX::Templated::VERSION; # CPAN complained when VERSION moved to MX::T
+
 has 'template_view' => (
     is      => 'ro',
     does    => 'MooseX::Templated::View',

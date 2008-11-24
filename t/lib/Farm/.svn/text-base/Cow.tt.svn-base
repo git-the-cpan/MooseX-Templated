@@ -1,1 +1,0 @@
-This cow has [% self.spots %] spots and goes [% self.moo %]!
