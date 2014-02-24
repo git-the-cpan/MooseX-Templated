@@ -18,3 +18,4 @@ t/00.load.t
 t/01.api.t
 t/02.render.t
 
+META.json

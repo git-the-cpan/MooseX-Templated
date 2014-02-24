@@ -14,7 +14,6 @@ my $builder = Module::Build->new(
    		'Moose' 		=> '0.60',
    		'Readonly' 		=> '1.03',
    		'Template'   	=> '2.20',
-		'MooseX::AttributeHelpers' => '0.14',
 		'Path::Class'   => '0.16',
     },
     add_to_cleanup      => [ 'MooseX-Templated-*' ],

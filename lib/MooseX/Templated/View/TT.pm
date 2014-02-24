@@ -11,7 +11,6 @@ See L<MooseX::Templated::View>
 =cut
 
 use Moose;
-use MooseX::AttributeHelpers;
 
 use Template;
 use Carp;
@@ -86,15 +85,14 @@ This is the key/value stash that will be passed to the template engine
 =cut
 
 has 'stash' => (
-    'metaclass' => 'Collection::Hash',
+    'traits'    => [ 'Hash' ],
     'isa'       => 'HashRef',
     'is'        => 'rw',
-    'provides'  => {
-        'set'     => 'set_stash_key',
-        'get'     => 'get_stash_key',
-        'empty'   => 'empty_stash',
-        'delete'  => 'delete_stash_key',
-        'keys'    => 'stash_keys',
+    'handles'   => {
+        set_stash_key    => 'set',
+        get_stash_key    => 'get',
+        delete_stash_key => 'delete',
+        stash_keys       => 'keys',
     },
     'default' => sub { {} },
 );

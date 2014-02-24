@@ -1,23 +1,23 @@
 use strict;
 use warnings;
-use ExtUtils::MakeMaker;
+use inc::Module::Install;
+use Module::Install::External;
 
-WriteMakefile(
-    NAME                => 'MooseX::Templated',
-    AUTHOR              => 'Ian Sillitoe <isillitoe@cpan.org>',
-    VERSION_FROM        => 'lib/MooseX/Templated.pm',
-    ABSTRACT_FROM       => 'lib/MooseX/Templated.pm',
-    PL_FILES            => {},
-    PREREQ_PM => {
-        'Test::More' 	=> '0.86',
-   		'File::Slurp'   => '9999.13',
-   		'File::Where'   => '1.16',
-   		'Moose' 		=> '0.60',
-   		'Readonly' 		=> '1.03',
-   		'Template'   	=> '2.20',
-		'MooseX::AttributeHelpers' => '0.14',
-		'Path::Class'   => '0.16',
-    },
-    dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean               => { FILES => 'MooseX-Templated-*' },
-);
+name 'MooseX-Templated';
+all_from 'lib/MooseX/Templated.pm';
+license 'perl';
+
+requires 'File::Slurp'              => '9999.13';
+requires 'File::Where'              => '1.16';
+requires 'Moose'                    => '1.0';
+requires 'Readonly'                 => '1.03';
+requires 'Template'                 => '2.20';
+requires 'Path::Class'              => '0.16';
+
+tests_recursive();
+
+WriteAll();
+
+if ($Module::Install::AUTHOR) {
+        system('pod2text lib/MooseX/Templated.pm > README');
+}

@@ -1,62 +1,84 @@
-MooseX-Templated version 0.01
+NAME
+    MooseX::Templated - Template framework for Moose objects
 
 SYNOPSIS
+        # Farm/Cow.pm
+        package Farm::Cow;
+        use Moose;
+        with 'MooseX::Templated::Role';
 
-Farm/Cow.pm
+        has 'spots'   => ( is => 'rw' );
+        has 'hobbies' => ( is => 'rw', default => sub { ['mooing', 'chewing'] } );
 
-    package Farm::Cow;
-    use Moose;
-    with 'MooseX::Templated::Role';
+        sub moo { "Moo" }
 
-    has 'spots'   => ( is => 'rw' );
-    has 'hobbies' => ( is => 'rw', default => sub { ['mooing', 'chewing'] } );
+        # Farm/Cow.tt
+        This cow has [% self.spots %] spots - it likes
+        [% self.hobbies.join(" and ") %]. 
+        [% self.moo %]!
 
-    sub moo { "Moooooooo!" }
+    Elsewhere...
 
-Farm/Cow.t
-
-    This cow has [% self.spots %] spots. It mostly spends its time 
-    [% self.hobbies.join(" and ") %]. However, when it is very happy 
-    it exclaims, "[% self.moo %]!".
-
-Elsewhere on the Farm...
-
-    my $cow = Farm::Cow->new( spots => '8' );
+        my $cow = Farm::Cow->new( spots => '8' );
     
-    $cow->render();
+        $cow->render();
     
-    # This cow has 8 spots. It mostly spends its time
-    # mooing and chewing. However, when it is very happy
-    # it exclaims, "Moooooooo!".
+        # This cow has 8 spots - it likes
+        # mooing and chewing.
+        # Moo!
 
+INTERFACE
+    This module contains no code to speak of - it is just here to provide an
+    obvious root document for the rest of the project.
 
-INSTALLATION
+    If you're looking for more details on the interface available for
+    rendering your Moose object with templates then you are probably looking
+    for:
 
-To install this module, run the following commands:
+        L<MooseX::Templated::Role>
 
-    perl Makefile.PL
-    make
-    make test
-    make install
+    If you are interested in looking under the bonnet or implementing your
+    own templating engine then you probably want to have a look at:
 
+        L<MooseX::Templated::View>
 
-Alternatively, to install with Module::Build, you can use the following commands:
+DISCUSSION
+  What this module aims to be
+    The intention of this module is to provide a quick and simple framework
+    to glue all things good about Moose to all things sensible about using
+    templates to separate your internals from your display logic.
 
-    perl Build.PL
-    ./Build
-    ./Build test
-    ./Build install
+    It makes some guesses about what your templates are called and where
+    they live and going along with those defaults should get you up and
+    running within a couple lines of code.
 
+    If you don't want to go with those default suggestions then the
+    intention is to provide enough flexible to fit in with your setup with
+    the minimum of fuss (if not, then patches/suggestions are always
+    welcome).
 
+  What this module doesn't aim to be
+    This module is not intended to be an attempt at a MVC framework.
 
-DEPENDENCIES
+    If you haven't heard of Catalyst then go have a look.
 
-Moose, Template
+SEE ALSO
+    Moose
 
+    Please report any bugs or feature requests to
+    "bug-moosex-templated@rt.cpan.org", or through the web interface at
+    <http://rt.cpan.org>.
 
-COPYRIGHT AND LICENCE
+ACKNOWLEDGEMENTS
+    Chris Prather (perigrin)
 
-Copyright (C) 2008, Ian Sillitoe
+AUTHOR
+    Ian Sillitoe "<isillitoe@cpan.org>"
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+LICENCE AND COPYRIGHT
+    Copyright (c) 2008, Ian Sillitoe "<isillitoe@cpan.org>". All rights
+    reserved.
+
+    This module is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself. See perlartistic.
+
